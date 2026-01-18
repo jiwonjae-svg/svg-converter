@@ -2,7 +2,7 @@
 
 이미지를 고품질 SVG 벡터 파일로 변환하는 웹 애플리케이션입니다.
 
-🌐 **Live Demo**: https://jiwonjae-svg.github.io/
+🌐 **Live Demo**: https://img-to-svg-converter.vercel.app (Vercel에 배포 후 자동 생성됨)
 
 ## ✨ 주요 기능
 
@@ -33,13 +33,43 @@ npm run build
 npm run preview
 ```
 
-### GitHub Pages 배포
+## 🚀 Vercel 배포
 
-**저장소 이름이 `username.github.io`인 경우 (현재 설정):**
-- 자동으로 최상위 도메인에 배포됨
-- AdSense 등록 가능
+### 방법 1: Vercel CLI (권장)
 
-**배포 방법:**
+```bash
+# Vercel CLI 설치
+npm i -g vercel
+
+# 배포
+vercel
+
+# 프로덕션 배포
+vercel --prod
+```
+
+### 방법 2: GitHub 연동 (자동 배포)
+
+1. **Vercel 계정 생성**
+   - https://vercel.com 접속
+   - GitHub 계정으로 로그인
+
+2. **프로젝트 import**
+   - "New Project" 클릭
+   - GitHub 저장소 선택
+   - 프레임워크: Vite 자동 감지
+   - "Deploy" 클릭
+
+3. **자동 배포 설정**
+   - main 브랜치에 push하면 자동으로 배포됨
+   - PR마다 미리보기 배포 생성됨
+
+### Vercel 환경 변수 설정 (AdSense용)
+
+Vercel 대시보드 → Settings → Environment Variables:
+```
+VITE_ADSENSE_CLIENT_ID=ca-pub-XXXXXXXXXXXXXXXX
+```
 
 ```bash
 npm run deploy

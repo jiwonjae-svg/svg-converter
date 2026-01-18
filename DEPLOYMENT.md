@@ -1,38 +1,84 @@
-# 배포 가이드
+# Vercel 배포 가이드
 
-## 📦 배포 전 체크리스트
+## 🚀 Vercel 배포 방법
 
-### 1. 설정 파일 (이미 완료됨)
+### 방법 1: Vercel 대시보드에서 배포 (추천)
 
-#### package.json
-```json
-{
-  "homepage": "https://jiwonjae-svg.github.io/"
-}
+1. **Vercel 계정 생성**
+   - https://vercel.com 접속
+   - GitHub 계정으로 로그인
+
+2. **New Project 생성**
+   - "Add New..." → "Project" 클릭
+   - GitHub 저장소 검색: `jiwonjae-svg/jiwonjae-svg.github.io`
+   - "Import" 클릭
+
+3. **프로젝트 설정**
+   - Framework Preset: **Vite** (자동 감지됨)
+   - Build Command: `npm run build` (자동 설정)
+   - Output Directory: `dist` (자동 설정)
+   - Install Command: `npm install` (자동 설정)
+
+4. **환경 변수 설정 (선택사항)**
+   - AdSense용 환경 변수는 나중에 추가 가능
+
+5. **Deploy 클릭**
+   - 2-3분 후 배포 완료
+   - 자동으로 URL 생성: `https://your-project.vercel.app`
+
+6. **커스텀 도메인 설정 (선택사항)**
+   - Settings → Domains
+   - 원하는 도메인 추가
+
+### 방법 2: Vercel CLI로 배포
+
+```bash
+# Vercel CLI 설치
+npm i -g vercel
+
+# 로그인
+vercel login
+
+# 첫 배포 (설정)
+vercel
+
+# 프로덕션 배포
+vercel --prod
 ```
-✅ 최상위 도메인으로 설정 완료
-
-#### vite.config.ts
-```typescript
-base: '/'
-```
-✅ 최상위 경로로 설정 완료
-
-#### 저장소 이름
-- **중요**: GitHub 저장소 이름을 `jiwonjae-svg.github.io`로 변경하세요
-- 이렇게 하면 https://jiwonjae-svg.github.io/ 에 직접 배포됩니다
-- AdSense 등록이 가능해집니다
-
-#### public/sitemap.xml & robots.txt
-✅ URL이 https://jiwonjae-svg.github.io/ 로 업데이트됨
 
 ---
 
-## 💰 Google AdSense 설정 가이드
+## 🔄 자동 배포 설정
 
-### 1. AdSense 계정 생성 및 사이트 등록
+Vercel이 GitHub와 연동되면:
+- ✅ **main 브랜치** push → 자동 프로덕션 배포
+- ✅ **다른 브랜치** push → 미리보기 배포 생성
+- ✅ **Pull Request** → 미리보기 URL 자동 생성
 
-**등록 URL**: `https://jiwonjae-svg.github.io` (서브경로 제외)
+---
+
+## 📦 설정 파일 (이미 완료됨)
+
+### vercel.json
+✅ 이미 생성됨 - SPA 라우팅, 캐싱, 보안 헤더 설정
+
+### .vercelignore
+✅ 이미 생성됨 - 배포 시 제외할 파일 지정
+
+---
+
+## 💰 Google AdSense 설정
+
+### 1. AdSense 계정에 Vercel 도메인 등록
+
+**배포 완료 후:**
+- Vercel에서 배포된 URL 확인 (예: `https://img-to-svg-converter.vercel.app`)
+- AdSense 대시보드 → 사이트 → 새 사이트 추가
+- URL 입력: `https://img-to-svg-converter.vercel.app`
+
+**또는 커스텀 도메인 사용:**
+- 자신의 도메인 연결 (예: `svgconverter.com`)
+- AdSense에 커스텀 도메인 등록
 
 1. **AdSense 가입**
    - https://www.google.com/adsense 방문
