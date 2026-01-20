@@ -22,6 +22,7 @@ const App: React.FC = () => {
   const { 
     theme, 
     language,
+    conversionMode,
     images, 
     settings,
     isProcessing,
@@ -84,7 +85,9 @@ const App: React.FC = () => {
           {/* 히어로 섹션 */}
           <section className="hero">
             <h2 className="hero-title">{t.app.title}</h2>
-            <p className="hero-description">{t.app.description}</p>
+            <p className="hero-description">
+              {conversionMode === 'image-to-svg' ? t.app.description : t.app.descriptionSvgToImage}
+            </p>
           </section>
 
           {/* 업로드 섹션 */}
@@ -93,10 +96,12 @@ const App: React.FC = () => {
             <ImageList />
           </section>
 
-          {/* 설정 섹션 */}
-          <section className="settings-section">
-            <Settings />
-          </section>
+          {/* 설정 섹션 (Image to SVG 모드에서만 표시) */}
+          {conversionMode === 'image-to-svg' && (
+            <section className="settings-section">
+              <Settings />
+            </section>
+          )}
 
           {/* 변환 버튼 */}
           <section className="convert-section">

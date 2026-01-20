@@ -8,6 +8,9 @@ export type Language = 'ko' | 'en' | 'ja' | 'zh';
 // 테마 타입
 export type Theme = 'light' | 'dark';
 
+// 변환 모드 타입
+export type ConversionMode = 'image-to-svg' | 'svg-to-image';
+
 // 이미지 파일 상태
 export type ImageStatus = 'idle' | 'processing' | 'completed' | 'error';
 
@@ -49,6 +52,11 @@ export interface AppState {
   language: Language;
   setLanguage: (language: Language) => void;
   
+  // 변환 모드
+  conversionMode: ConversionMode;
+  setConversionMode: (mode: ConversionMode) => void;
+  toggleConversionMode: () => void;
+  
   // 이미지
   images: UploadedImage[];
   addImages: (files: File[]) => void;
@@ -78,12 +86,19 @@ export interface Translations {
     title: string;
     subtitle: string;
     description: string;
+    descriptionSvgToImage: string;
+  };
+  mode: {
+    imageToSvg: string;
+    svgToImage: string;
   };
   dropzone: {
     title: string;
+    titleSvg: string;
     subtitle: string;
     dragActive: string;
     formats: string;
+    formatsSvg: string;
   };
   settings: {
     title: string;
@@ -102,6 +117,9 @@ export interface Translations {
     converting: string;
     download: string;
     downloadAll: string;
+    downloadSvg: string;
+    downloadPng: string;
+    downloadJpg: string;
     copy: string;
     copied: string;
     clear: string;

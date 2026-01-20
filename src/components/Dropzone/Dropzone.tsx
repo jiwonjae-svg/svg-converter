@@ -12,7 +12,7 @@ import './Dropzone.css';
  * 드래그 앤 드롭 및 클릭으로 이미지 업로드 지원
  */
 export const Dropzone: React.FC = () => {
-  const { language, addImages } = useAppStore();
+  const { language, conversionMode, addImages } = useAppStore();
   const t = getTranslation(language);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -37,13 +37,20 @@ export const Dropzone: React.FC = () => {
     }
   }, [addImages, t.errors]);
 
+  // 변환 모드에 따라 허용 파일 형식 변경
+  const acceptedFileTypes = conversionMode === 'image-to-svg' 
+    ? {
+        'image/png': ['.png'],
+        'image/jpeg': ['.jpg', '.jpeg'],
+        'image/webp': ['.webp'],
+      } as const
+    : {
+        'image/svg+xml': ['.svg'],
+      } as const;
+
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     onDrop,
-    accept: {
-      'image/png': ['.png'],
-      'image/jpeg': ['.jpg', '.jpeg'],
-      'image/webp': ['.webp'],
-    },
+    accept: acceptedFileTypes as any,
     maxSize: 10 * 1024 * 1024, // 10MB
     multiple: true,
   });
@@ -75,9 +82,13 @@ export const Dropzone: React.FC = () => {
             <div className="dropzone-icon">
               <Upload size={48} strokeWidth={1.5} />
             </div>
-            <p className="dropzone-title">{t.dropzone.title}</p>
+            <p className="dropzone-title">
+              {conversionMode === 'image-to-svg' ? t.dropzone.title : t.dropzone.titleSvg}
+            </p>
             <p className="dropzone-subtitle">{t.dropzone.subtitle}</p>
-            <p className="dropzone-formats">{t.dropzone.formats}</p>
+            <p className="dropzone-formats">
+              {conversionMode === 'image-to-svg' ? t.dropzone.formats : t.dropzone.formatsSvg}
+            </p>
           </>
         )}
       </div>

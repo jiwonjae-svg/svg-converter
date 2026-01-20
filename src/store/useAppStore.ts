@@ -7,7 +7,8 @@ import type {
   UploadedImage, 
   ImageStatus,
   Theme,
-  Language 
+  Language,
+  ConversionMode
 } from '../types';
 import { detectBrowserLanguage, getTranslation } from '../i18n';
 
@@ -58,6 +59,15 @@ export const useAppStore = create<AppState>()(
       // 언어 상태
       language: detectBrowserLanguage(),
       setLanguage: (language: Language) => set({ language }),
+      
+      // 변환 모드
+      conversionMode: 'image-to-svg',
+      setConversionMode: (mode: ConversionMode) => set({ conversionMode: mode }),
+      toggleConversionMode: () => {
+        set((state) => ({
+          conversionMode: state.conversionMode === 'image-to-svg' ? 'svg-to-image' : 'image-to-svg'
+        }));
+      },
       
       // 이미지 상태
       images: [],

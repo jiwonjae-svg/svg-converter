@@ -1,5 +1,5 @@
 import React from 'react';
-import { Moon, Sun, Languages } from 'lucide-react';
+import { Moon, Sun, Languages, ArrowLeftRight } from 'lucide-react';
 import { useAppStore } from '../../store';
 import { getTranslation } from '../../i18n';
 import type { Language } from '../../types';
@@ -7,10 +7,10 @@ import './Header.css';
 
 /**
  * 헤더 컴포넌트
- * 앱 제목, 테마 토글, 언어 선택 기능 포함
+ * 앱 제목, 변환 모드 토글, 테마 토글, 언어 선택 기능 포함
  */
 export const Header: React.FC = () => {
-  const { theme, toggleTheme, language, setLanguage } = useAppStore();
+  const { theme, toggleTheme, language, setLanguage, conversionMode, toggleConversionMode } = useAppStore();
   const t = getTranslation(language);
 
   const languages: { code: Language; label: string }[] = [
@@ -57,6 +57,19 @@ export const Header: React.FC = () => {
         </div>
 
         <div className="header-controls">
+          {/* 변환 모드 토글 */}
+          <button
+            className="mode-toggle"
+            onClick={toggleConversionMode}
+            aria-label="Toggle conversion mode"
+            title={conversionMode === 'image-to-svg' ? t.mode.svgToImage : t.mode.imageToSvg}
+          >
+            <ArrowLeftRight size={18} aria-hidden="true" />
+            <span className="mode-label">
+              {conversionMode === 'image-to-svg' ? t.mode.imageToSvg : t.mode.svgToImage}
+            </span>
+          </button>
+
           {/* 언어 선택 */}
           <div className="language-selector">
             <Languages size={18} aria-hidden="true" />
