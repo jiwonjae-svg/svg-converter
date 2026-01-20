@@ -5,7 +5,7 @@ export const zh: Translations = {
     title: 'SVG转换器',
     subtitle: '图像转矢量',
     description: '将PNG、JPG、WEBP图像转换为高质量SVG矢量文件',
-    descriptionSvgToImage: '将SVG文件转换为PNG或JPG图像',
+    descriptionSvgToImage: '将SVG文件转换为PNG、JPG、WEBP图像',
   },
   mode: {
     imageToSvg: '图像转SVG',

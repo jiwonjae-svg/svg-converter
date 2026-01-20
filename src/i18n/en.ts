@@ -5,7 +5,7 @@ export const en: Translations = {
     title: 'SVG Converter',
     subtitle: 'Image to Vector',
     description: 'Convert PNG, JPG, WEBP images to high-quality SVG vector files',
-    descriptionSvgToImage: 'Convert SVG files to PNG or JPG images',
+    descriptionSvgToImage: 'Convert SVG files to PNG, JPG, WEBP images',
   },
   mode: {
     imageToSvg: 'Image to SVG',

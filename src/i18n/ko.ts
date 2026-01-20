@@ -5,7 +5,7 @@ export const ko: Translations = {
     title: 'SVG 변환기',
     subtitle: '이미지를 벡터로',
     description: 'PNG, JPG, WEBP 이미지를 고품질 SVG 벡터 파일로 변환하세요',
-    descriptionSvgToImage: 'SVG 파일을 PNG 또는 JPG 이미지로 변환하세요',
+    descriptionSvgToImage: 'SVG 파일을 PNG, JPG, WEBP 이미지로 변환하세요',
   },
   mode: {
     imageToSvg: '이미지에서 SVG로',

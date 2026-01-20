@@ -5,7 +5,7 @@ export const ja: Translations = {
     title: 'SVG変換ツール',
     subtitle: '画像をベクターに',
     description: 'PNG、JPG、WEBP画像を高品質なSVGベクターファイルに変換します',
-    descriptionSvgToImage: 'SVGファイルをPNGまたはJPG画像に変換します',
+    descriptionSvgToImage: 'SVGファイルをPNG、JPG、WEBP画像に変換します',
   },
   mode: {
     imageToSvg: '画像からSVGへ',
