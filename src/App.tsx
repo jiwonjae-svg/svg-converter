@@ -15,13 +15,6 @@ import { convertImageToSvg, conversionRateLimiter } from './utils';
 import toast from 'react-hot-toast';
 import './App.css';
 
-// TypeScript 타입 확장
-declare global {
-  interface Window {
-    adsbygoogle: any[];
-  }
-}
-
 /**
  * 메인 애플리케이션 컴포넌트
  */
@@ -43,18 +36,6 @@ const App: React.FC = () => {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
-
-  // Google AdSense 초기화
-  useEffect(() => {
-    // 광고 로드 (프로덕션 환경에서만)
-    if (import.meta.env.PROD) {
-      try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (error) {
-        console.error('AdSense error:', error);
-      }
-    }
-  }, []);
 
   // 변환 처리
   const handleConvert = async () => {
@@ -106,16 +87,6 @@ const App: React.FC = () => {
             <p className="hero-description">{t.app.description}</p>
           </section>
 
-          {/* Google AdSense - 상단 디스플레이 광고 */}
-          <div className="ad-container">
-            <ins className="adsbygoogle"
-              style={{ display: 'block' }}
-              data-ad-client="ca-pub-5903235347710527"
-              data-ad-slot="6650588038"
-              data-ad-format="auto"
-              data-full-width-responsive="true"></ins>
-          </div>
-
           {/* 업로드 섹션 */}
           <section className="upload-section">
             <Dropzone />
@@ -151,28 +122,8 @@ const App: React.FC = () => {
             </button>
           </section>
 
-          {/* Google AdSense - 중간 인피드 광고 */}
-          <div className="ad-container">
-            <ins className="adsbygoogle"
-              style={{ display: 'block' }}
-              data-ad-client="ca-pub-5903235347710527"
-              data-ad-slot="6650588038"
-              data-ad-format="fluid"
-              data-ad-layout-key="-fb+5w+4e-db+86"></ins>
-          </div>
-
           {/* 결과 섹션 */}
           <Results />
-
-          {/* Google AdSense - 하단 디스플레이 광고 */}
-          <div className="ad-container">
-            <ins className="adsbygoogle"
-              style={{ display: 'block' }}
-              data-ad-client="ca-pub-5903235347710527"
-              data-ad-slot="6650588038"
-              data-ad-format="auto"
-              data-full-width-responsive="true"></ins>
-          </div>
         </div>
       </main>
 
